@@ -8,13 +8,14 @@ const colorArray = [
     '#4d004d',
     '#5353c6',
     '#ff4d4d',
+    '#00b300',
+    '#80d4ff',
+    '#aa80ff',
+    '#ff794d',
 ];
 
 const randomColor = () => {
-    for(let i = 0; i < colorArray.length; i++) {
-        const random = Math.floor(Math.random() * i);
-        console.log(random);
-       }
+    const random = Math.floor(Math.random() * colorArray.length);
     return colorArray[random];
 }
 
@@ -24,17 +25,18 @@ export default class RandomColor extends Component {
         color: '',
     };
 
-    componentDidMount = () => {
-        const color = setInterval(randomColor(), 1000)
-        this.setState({color})
+componentDidMount = () => {
+    setInterval(() => {
+    const color = randomColor();
+    this.setState({color})}, 1000)
     }
 
-    render() {
-        const { color } = this.state;
-        return (
-            <>
-                <Display color={color} />
-            </>
+render() {
+    const { color } = this.state;
+    return (
+        <div>
+        <Display color={ color } />
+        </div>
         )
     }
 }
